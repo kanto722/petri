@@ -1,3 +1,4 @@
+import { Component } from 'react/cjs/react.production.min';
 import AppFilter from '../app-filter/app-filter';
 import AppInfo from '../app-info/app-info';
 import EmployeesAddForm from '../employers-add-form/employers-add-form';
@@ -8,7 +9,7 @@ import SearchPanel from '../search-panel/search-panel';
 import './app.css';
 
 
-function App() {
+class App extends Component {
 
     const data = [
         {name: 'John C.', salary: 800, increase: false, id: 1},
@@ -16,17 +17,21 @@ function App() {
         {name: 'Carl W.', salary: 5000, increase: false, id: 3},
     ];
 
-    return (
-        <div className="app">
-            <AppInfo />
-            <div className="search-panel">
-                <SearchPanel />
-                <AppFilter />
+    render() {
+        return (
+            <div className="app">
+                <AppInfo />
+                <div className="search-panel">
+                    <SearchPanel />
+                    <AppFilter />
+                </div>
+                <EmployersList 
+                data={data}
+                onDelete={id => console.log(id)}/>
+                <EmployeesAddForm />
             </div>
-            <EmployersList data={data}/>
-            <EmployeesAddForm />
-        </div>
-    )
+        );
+    }
 }
 
 export default App;
